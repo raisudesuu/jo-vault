@@ -52,7 +52,8 @@ const PLAYLIST_TRACKS: Track[] = [
   { id: 37, title: 'Mercy', artist: 'Shawn Mendes', duration: '3:28', spotifyTrackId: '0AS63m1wHv9n4VVRizK6Hc', vibeColor: 'linear-gradient(180deg, #260505 0%, #570f0f 50%, #0c0101 100%)' },
 ];
 
-const FULL_PLAYLIST_EMBED = 'https://open.spotify.com/embed/playlist/4kIvPanUj3vMZWvD6Yl3WV?utm_source=generator&theme=0';
+// Exact updated playlist embed URL
+const FULL_PLAYLIST_EMBED = 'https://open.spotify.com/embed/playlist/4kIvPanUj3vMZWvD6Yl3WV?si=IgJMFg_BSyujQYKshnB63A&utm_source=generator&theme=0';
 
 export default function InteractivePlaylistPage() {
   const [currentBg, setCurrentBg] = useState('linear-gradient(180deg, #180509 0%, #3d0d14 30%, #7a1e25 55%, #c84b31 75%, #f48c32 88%, #150204 100%)');
@@ -60,7 +61,7 @@ export default function InteractivePlaylistPage() {
   const [currentEmbedUrl, setCurrentEmbedUrl] = useState(FULL_PLAYLIST_EMBED);
   const [isFullPlaylist, setIsFullPlaylist] = useState(true);
 
-  // Mini-game states (30 seconds timer)
+  // Mini-game states
   const [gameStarted, setGameStarted] = useState(false);
   const [score, setScore] = useState(0);
   const [timeLeft, setTimeLeft] = useState(30);
@@ -68,7 +69,6 @@ export default function InteractivePlaylistPage() {
   const [gameWon, setGameWon] = useState(false);
   const [gameOver, setGameOver] = useState(false);
 
-  // Timer countdown hook
   useEffect(() => {
     let timer: NodeJS.Timeout;
     if (gameStarted && !gameWon && !gameOver) {
@@ -172,7 +172,7 @@ export default function InteractivePlaylistPage() {
 
       <div style={{ maxWidth: '900px', margin: '3rem auto', padding: '0 1.5rem' }}>
         
-        {/* Header Box & Interactive Spotify Player */}
+        {/* Header Box & Spotify Player */}
         <div
           style={{
             background: 'rgba(24, 5, 9, 0.85)',
@@ -276,7 +276,7 @@ export default function InteractivePlaylistPage() {
           })}
         </div>
 
-        {/* Mini-Game Section (30s timer & auto-reset) */}
+        {/* Mini-Game Section */}
         <div
           style={{
             marginTop: '4rem',
