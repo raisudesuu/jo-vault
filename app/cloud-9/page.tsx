@@ -16,8 +16,12 @@ export default function CloudNinePage() {
   const [slideDirection, setSlideDirection] = useState<'up' | 'down'>('down');
   const [isAnimating, setIsAnimating] = useState(false);
   const [hearted, setHearted] = useState<{ [key: number]: boolean }>({});
-  
-  // Mini-game & Unlock states for "Midnight Ride"
+
+  // Touch Swipe tracking states
+  const touchStartY = useRef<number | null>(null);
+  const touchEndY = useRef<number | null>(null);
+
+  // Mini-game & Unlock states
   const [showMiniGame, setShowMiniGame] = useState(false);
   const [miniGameStep, setMiniGameStep] = useState(0);
   const [miniGameError, setMiniGameError] = useState<string | null>(null);
@@ -66,7 +70,7 @@ export default function CloudNinePage() {
     {
       id: 7,
       src: '/images/cloud9/7.jpg',
-      caption: "HAPPY BIRTHDAY JOANNE!! 🏍️🇮🇹\n\nMay this year bless you with absolute horsepower and total fluency in espresso-fueled Italian hand gestures. Time to trade the ordinary for roaring engines and chic café culture &mdash; have the wildest 17th birthday ever!",
+      caption: "HAPPY BIRTHDAY VALERIE!! 🏍️🇮🇹\n\nI wish you get a super bike and also learn italian 😛",
       author: '-maharshmallow/cheetos',
     },
     {
@@ -132,9 +136,22 @@ export default function CloudNinePage() {
     }
   };
 
-  const handleCardWheel = (e: React.WheelEvent) => {
-    e.preventDefault(); // Stop global page jumping
+  const navigateCard = (direction: 'next' | 'prev') => {
+    if (isAnimating) return;
+    if (direction === 'next' && currentIndex < cards.length - 1) {
+      setIsAnimating(true);
+      setSlideDirection('down');
+      setCurrentIndex((prev) => prev + 1);
+      setTimeout(() => setIsAnimating(false), 300);
+    } else if (direction === 'prev' && currentIndex > 0) {
+      setIsAnimating(true);
+      setSlideDirection('up');
+      setCurrentIndex((prev) => prev - 1);
+      setTimeout(() => setIsAnimating(false), 300);
+    }
+  };
 
+  const handleCardWheel = (e: React.WheelEvent) => {
     const el = textScrollRef.current;
     if (el) {
       const { scrollTop, scrollHeight, clientHeight } = el;
@@ -155,23 +172,51 @@ export default function CloudNinePage() {
       }
     }
 
-    if (isAnimating) return;
-
     if (e.deltaY > 15) {
-      if (currentIndex < cards.length - 1) {
-        setIsAnimating(true);
-        setSlideDirection('down');
-        setCurrentIndex((prev) => prev + 1);
-        setTimeout(() => setIsAnimating(false), 300);
-      }
+      navigateCard('next');
     } else if (e.deltaY < -15) {
-      if (currentIndex > 0) {
-        setIsAnimating(true);
-        setSlideDirection('up');
-        setCurrentIndex((prev) => prev - 1);
-        setTimeout(() => setIsAnimating(false), 300);
+      navigateCard('prev');
+    }
+  };
+
+  // Touch Handlers
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartY.current = e.targetTouches[0].clientY;
+    touchEndY.current = null;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndY.current = e.targetTouches[0].clientY;
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStartY.current || !touchEndY.current) return;
+    const distance = touchStartY.current - touchEndY.current;
+    const isSwipeUp = distance > 45;
+    const isSwipeDown = distance < -45;
+
+    const el = textScrollRef.current;
+    if (el) {
+      const { scrollTop, scrollHeight, clientHeight } = el;
+      const hasVerticalScroll = scrollHeight > clientHeight;
+
+      if (hasVerticalScroll) {
+        const isAtTop = scrollTop <= 2;
+        const isAtBottom = Math.abs(scrollHeight - clientHeight - scrollTop) < 5;
+
+        if (isSwipeUp && !isAtBottom) return;
+        if (isSwipeDown && !isAtTop) return;
       }
     }
+
+    if (isSwipeUp) {
+      navigateCard('next');
+    } else if (isSwipeDown) {
+      navigateCard('prev');
+    }
+
+    touchStartY.current = null;
+    touchEndY.current = null;
   };
 
   const currentCard = cards[currentIndex];
@@ -179,6 +224,7 @@ export default function CloudNinePage() {
   return (
     <main
       style={{
+        minHeight: '100vh',
         height: '100vh',
         backgroundColor: '#2b1a10',
         backgroundImage: `
@@ -190,7 +236,7 @@ export default function CloudNinePage() {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'space-between',
-        padding: '1.5rem 1.5rem',
+        padding: '1.2rem 1.5rem',
         position: 'relative',
         overflow: 'hidden',
         userSelect: 'none',
@@ -206,11 +252,11 @@ export default function CloudNinePage() {
           100% { transform: translate(0, 0); opacity: 0.12; }
         }
         @keyframes slideInDown {
-          0% { transform: translateY(-20px); opacity: 0; }
+          0% { transform: translateY(-15px); opacity: 0; }
           100% { transform: translateY(0); opacity: 1; }
         }
         @keyframes slideInUp {
-          0% { transform: translateY(20px); opacity: 0; }
+          0% { transform: translateY(15px); opacity: 0; }
           100% { transform: translateY(0); opacity: 1; }
         }
         .film-grain-overlay {
@@ -252,6 +298,8 @@ export default function CloudNinePage() {
           justifyContent: 'space-between',
           alignItems: 'center',
           zIndex: 20,
+          gap: '8px',
+          marginBottom: '0.5rem',
         }}
       >
         <Link
@@ -261,12 +309,12 @@ export default function CloudNinePage() {
             textDecoration: 'none',
             fontSize: '11px',
             fontFamily: 'monospace',
-            letterSpacing: '0.25em',
+            letterSpacing: '0.15em',
             textTransform: 'uppercase',
-            transition: 'color 0.2s ease',
+            whiteSpace: 'nowrap',
           }}
         >
-          &larr; valerie&apos;s vault
+          &larr; vault
         </Link>
 
         <div style={{ textAlign: 'center' }}>
@@ -274,7 +322,7 @@ export default function CloudNinePage() {
             style={{
               fontFamily: 'Georgia, serif',
               fontStyle: 'italic',
-              fontSize: 'clamp(1.4rem, 2.5vw, 2rem)',
+              fontSize: 'clamp(1.4rem, 2.5vw, 2.2rem)',
               margin: 0,
               fontWeight: 'normal',
               color: '#fbf5ef',
@@ -286,12 +334,14 @@ export default function CloudNinePage() {
             style={{
               fontSize: '10px',
               fontFamily: 'monospace',
-              letterSpacing: '0.2em',
+              letterSpacing: '0.15em',
               color: '#c2ab9b',
               textTransform: 'uppercase',
+              display: 'block',
+              marginTop: '2px',
             }}
           >
-            [ 17th birthday archives &mdash; scroll anywhere on card ]
+            [ 17th bday archives ]
           </span>
         </div>
 
@@ -299,77 +349,85 @@ export default function CloudNinePage() {
           href="/midnight-ride"
           onClick={handleMidnightRideClick}
           style={{
-            padding: '8px 16px',
+            padding: '6px 12px',
             borderRadius: '10px',
             backgroundColor: isUnlocked ? '#3a2216' : '#1e110a',
             border: '1px solid #704832',
             color: '#f0e6dc',
             textDecoration: 'none',
-            fontSize: '11px',
+            fontSize: '10px',
             fontFamily: 'monospace',
-            letterSpacing: '0.15em',
+            letterSpacing: '0.1em',
             textTransform: 'uppercase',
             display: 'flex',
             alignItems: 'center',
-            gap: '6px',
+            gap: '4px',
             boxShadow: '0 4px 15px rgba(0, 0, 0, 0.6)',
             cursor: 'pointer',
+            whiteSpace: 'nowrap',
           }}
         >
-          {isUnlocked ? 'midnight ride →' : '🔒 midnight ride →'}
+          {isUnlocked ? 'ride →' : '🔒 ride →'}
         </a>
       </header>
 
       {/* Central Film Card Container */}
       <div
         onWheel={handleCardWheel}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
         style={{
           width: '100%',
-          maxWidth: '500px',
+          maxWidth: '480px',
           zIndex: 10,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          cursor: 'ns-resize',
+          flex: 1,
+          justifyContent: 'center',
+          touchAction: 'pan-y',
         }}
-        title="Scroll anywhere on card to read or switch frames"
       >
-        {/* Adhesive Tape Top Accent */}
-        <div
-          style={{
-            width: '90px',
-            height: '24px',
-            backgroundColor: '#e6ccb2',
-            opacity: 0.85,
-            margin: '0 auto -12px auto',
-            transform: 'rotate(-1deg)',
-            zIndex: 15,
-            boxShadow: '0 2px 5px rgba(0,0,0,0.3)',
-          }}
-        />
-
         <div
           key={currentIndex}
           className="burnt-paper-card"
           style={{
-            padding: '2rem 1.6rem 1.4rem 1.6rem',
+            padding: '1.6rem 1.4rem 1.2rem 1.4rem',
             display: 'flex',
             flexDirection: 'column',
-            height: '530px',
+            height: 'clamp(480px, 68vh, 600px)',
             justifyContent: 'space-between',
             width: '100%',
             border: '1px solid #4a2f1d',
           }}
         >
+          {/* Adhesive Tape Accent inside card */}
+          <div
+            style={{
+              position: 'absolute',
+              top: '10px',
+              left: '50%',
+              transform: 'translateX(-50%) rotate(-1deg)',
+              width: '90px',
+              height: '18px',
+              backgroundColor: '#e6ccb2',
+              opacity: 0.85,
+              zIndex: 12,
+              boxShadow: '0 2px 4px rgba(0,0,0,0.25)',
+              pointerEvents: 'none',
+            }}
+          />
+
           {/* Film Strip Left & Right Sprocket Holes */}
-          <div style={{ position: 'absolute', left: '10px', top: '16px', bottom: '16px', width: '10px', display: 'flex', flexDirection: 'column', justifyContent: 'space-around', pointerEvents: 'none', opacity: '0.85' as any, zIndex: 4 }}>
-            {Array.from({ length: 13 }).map((_, i) => (
-              <div key={i} style={{ width: '10px', height: '16px', backgroundColor: '#140a05', borderRadius: '2px', border: '1px solid #362012' }} />
+          <div style={{ position: 'absolute', left: '8px', top: '12px', bottom: '12px', width: '8px', display: 'flex', flexDirection: 'column', justifyContent: 'space-around', pointerEvents: 'none', opacity: 0.85, zIndex: 4 }}>
+            {Array.from({ length: 11 }).map((_, i) => (
+              <div key={i} style={{ width: '8px', height: '14px', backgroundColor: '#140a05', borderRadius: '2px', border: '1px solid #362012' }} />
             ))}
           </div>
-          <div style={{ position: 'absolute', right: '10px', top: '16px', bottom: '16px', width: '10px', display: 'flex', flexDirection: 'column', justifyContent: 'space-around', pointerEvents: 'none', opacity: '0.85' as any, zIndex: 4 }}>
-            {Array.from({ length: 13 }).map((_, i) => (
-              <div key={i} style={{ width: '10px', height: '16px', backgroundColor: '#140a05', borderRadius: '2px', border: '1px solid #362012' }} />
+          <div style={{ position: 'absolute', right: '8px', top: '12px', bottom: '12px', width: '8px', display: 'flex', flexDirection: 'column', justifyContent: 'space-around', pointerEvents: 'none', opacity: 0.85, zIndex: 4 }}>
+            {Array.from({ length: 11 }).map((_, i) => (
+              <div key={i} style={{ width: '8px', height: '14px', backgroundColor: '#140a05', borderRadius: '2px', border: '1px solid #362012' }} />
             ))}
           </div>
 
@@ -381,34 +439,34 @@ export default function CloudNinePage() {
               alignItems: 'center',
               fontFamily: 'monospace',
               fontSize: '10px',
-              letterSpacing: '0.2em',
+              letterSpacing: '0.15em',
               color: '#3d2516',
               borderBottom: '1px dashed rgba(61, 37, 22, 0.3)',
               paddingBottom: '0.5rem',
+              marginTop: '0.6rem',
               zIndex: 5,
-              paddingLeft: '1rem',
-              paddingRight: '1rem',
+              paddingLeft: '0.8rem',
+              paddingRight: '0.8rem',
             }}
           >
-            <span>WISH ARCHIVE // 17TH</span>
+            <span>WISH ARCHIVE</span>
             <span>FRAME {String(currentIndex + 1).padStart(2, '0')}/{String(cards.length).padStart(2, '0')}</span>
           </div>
 
-          {/* Card Main Container with Polaroid/Letter Styling & Larger Readable Font */}
+          {/* Card Main Container */}
           <div
             style={{
-              margin: '0.6rem 1rem',
-              height: '345px',
+              margin: '0.6rem 0.4rem',
+              flex: 1,
               backgroundColor: '#120804',
               backgroundImage: 'radial-gradient(circle at 50% 50%, rgba(35, 18, 10, 0.8) 0%, rgba(10, 4, 2, 0.95) 100%)',
               borderRadius: '6px',
               border: '1px solid #4a2f1d',
               display: 'flex',
               flexDirection: 'column',
-              alignItems: 'flex-start',
+              alignItems: 'center',
               justifyContent: 'flex-start',
-              padding: '1.3rem',
-              textAlign: 'left',
+              padding: '1.2rem 1rem 1rem 1rem',
               position: 'relative',
               overflow: 'hidden',
               zIndex: 5,
@@ -432,12 +490,11 @@ export default function CloudNinePage() {
             <span
               style={{
                 fontFamily: 'monospace',
-                fontSize: '10px',
+                fontSize: '9px',
                 color: '#d4b595',
-                letterSpacing: '0.2em',
-                marginBottom: '0.5rem',
+                letterSpacing: '0.15em',
+                marginBottom: '0.6rem',
                 zIndex: 2,
-                alignSelf: 'center',
                 textTransform: 'uppercase',
               }}
             >
@@ -447,8 +504,9 @@ export default function CloudNinePage() {
               ref={textScrollRef}
               style={{
                 width: '100%',
-                maxHeight: '275px',
+                flex: 1,
                 overflowY: 'auto',
+                WebkitOverflowScrolling: 'touch',
                 zIndex: 2,
                 paddingRight: '6px',
                 scrollbarWidth: 'thin',
@@ -459,12 +517,13 @@ export default function CloudNinePage() {
                 style={{
                   fontFamily: 'Georgia, serif',
                   fontStyle: 'italic',
-                  fontSize: '1.12rem',
+                  fontSize: '1.05rem',
                   color: '#f9f1eb',
-                  lineHeight: '1.65',
+                  lineHeight: '1.6',
                   margin: 0,
                   whiteSpace: 'pre-line',
                   textShadow: '0 2px 4px rgba(0,0,0,0.8)',
+                  textAlign: 'left',
                 }}
               >
                 {currentCard.caption}
@@ -479,17 +538,17 @@ export default function CloudNinePage() {
               justifyContent: 'space-between',
               alignItems: 'center',
               borderTop: '1px dashed rgba(61, 37, 22, 0.3)',
-              paddingTop: '0.6rem',
+              paddingTop: '0.5rem',
               zIndex: 5,
-              paddingLeft: '1rem',
-              paddingRight: '1rem',
+              paddingLeft: '0.8rem',
+              paddingRight: '0.8rem',
             }}
           >
             <span
               style={{
                 fontFamily: 'Georgia, serif',
                 fontStyle: 'italic',
-                fontSize: '1.1rem',
+                fontSize: '1.05rem',
                 color: '#2b1a10',
                 fontWeight: 'bold',
                 letterSpacing: '0.05em',
@@ -507,8 +566,8 @@ export default function CloudNinePage() {
                 background: 'none',
                 border: '1px solid rgba(61, 37, 22, 0.35)',
                 borderRadius: '50%',
-                width: '34px',
-                height: '34px',
+                width: '32px',
+                height: '32px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -521,11 +580,62 @@ export default function CloudNinePage() {
             </button>
           </div>
         </div>
+
+        {/* Navigation Controls */}
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '1.2rem',
+            marginTop: '1rem',
+            zIndex: 15,
+          }}
+        >
+          <button
+            onClick={() => navigateCard('prev')}
+            disabled={currentIndex === 0}
+            style={{
+              padding: '6px 16px',
+              borderRadius: '20px',
+              border: '1px solid #704832',
+              backgroundColor: currentIndex === 0 ? '#1e110a' : '#3d2516',
+              color: currentIndex === 0 ? '#665042' : '#f0e6dc',
+              fontSize: '12px',
+              fontFamily: 'monospace',
+              cursor: currentIndex === 0 ? 'not-allowed' : 'pointer',
+            }}
+          >
+            &larr; Prev
+          </button>
+          <span
+            style={{
+              fontFamily: 'monospace',
+              fontSize: '11px',
+              color: '#c2ab9b',
+            }}
+          >
+            {currentIndex + 1} / {cards.length}
+          </span>
+          <button
+            onClick={() => navigateCard('next')}
+            disabled={currentIndex === cards.length - 1}
+            style={{
+              padding: '6px 16px',
+              borderRadius: '20px',
+              border: '1px solid #704832',
+              backgroundColor: currentIndex === cards.length - 1 ? '#1e110a' : '#3d2516',
+              color: currentIndex === cards.length - 1 ? '#665042' : '#f0e6dc',
+              fontSize: '12px',
+              fontFamily: 'monospace',
+              cursor: currentIndex === cards.length - 1 ? 'not-allowed' : 'pointer',
+            }}
+          >
+            Next &rarr;
+          </button>
+        </div>
       </div>
 
-      <div style={{ height: '0.5rem' }} />
-
-      {/* Mini-Game Security Unlock Modal */}
+      {/* Mini-Game Modal */}
       {showMiniGame && (
         <div
           style={{
