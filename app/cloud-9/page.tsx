@@ -30,60 +30,66 @@ export default function CloudNinePage() {
     {
       id: 1,
       src: '/images/cloud9/1.jpg',
-      caption: 'Happy Birthday Jo\n\nI hope you have a great year and all your dreams, both ambitious and romantic, come true. Wishing you the best 17th bday ever. And i hope yk that I will always be looking over both of you, thank you for always bringing a smile on his face and i hope you have one too for the rest of the year\n\nOnce again happy birthdayyy.',
-      author: '~arush khas',
+      caption: "HAPPIEST BIRTHDAYYY TO MY WIFEYYY 🥺🫵🎀💗!! Even though we've never met irl, you've genuinely become such an important person to me 😭🫂✨ Thank you for all the random talks, laughs, gossip and memories we've made together 😭🫳🤌🎀💗 I hope your day is as amazing and pretty as you areee 🥳🎂🎉🎀 May you get everything you wish for and have the BEST year ahead!! 🐬🌊💗 Stay happy, stay crazy, and never changeee 😭🫂🫶 LOVE YOUUU WIFEYYY 💋🎀✨ HAPPY BIRTHDAY ONCE AGAINNNN 🥳🎂🎀",
+      author: '-snoww',
     },
     {
       id: 2,
       src: '/images/cloud9/2.jpg',
-      caption: "HAPPY BIRTHDAY VASELINEEE!!\n\nI honestly dk much about you since the only time we've properly talked is while playing boblox with everyone. You're truly a great person to be around with and you're always cheerful. Hope you have the greatest day ever and cheers for more to comeee 🎉🥳🎉",
-      author: '-Shrekkk',
+      caption: 'Happy Birthday Jo\n\nI hope you have a great year and all your dreams, both ambitious and romantic, come true. Wishing you the best 17th bday ever. And i hope yk that I will always be looking over both of you, thank you for always bringing a smile on his face and i hope you have one too for the rest of the year\n\nOnce again happy birthdayyy.',
+      author: '~arush khas',
     },
     {
       id: 3,
       src: '/images/cloud9/3.jpg',
-      caption: "HAPPY BIRTHDAY C5H10O2!! 🥳🎉\n(Valeric Acid, incase you forgot 🥴)\n\nBEEN LIKE 4 MONTHS SINCE I'VE KNOWN YOU, BUT IT FEELS LIKE IT'S BEEN WAYYYYY LONGER 😭. FROM ALL THE STUPID CONVERSATIONS AND CHAOS TO PROPER CONVERSATIONS ABOUT EVERYTHING GOING ON, YOU'VE BECOME SOMEONE I REALLY VALUE HAVING AROUND. I'M REALLY GLAD WE'VE MADE SO MANY MEMORIES IN SUCH A SHORT TIME 🫶.\n\nHOPE YOU HAVE AN AMAZING BIRTHDAY AND THAT THIS YEAR BRINGS YOU A LOT OF GOOD THINGS! AND TRY NOT TO BULLY ME 😭🙏",
-      author: '-Ethanee',
+      caption: "HAPPY BIRTHDAY VASELINEEE!!\n\nI honestly dk much about you since the only time we've properly talked is while playing boblox with everyone. You're truly a great person to be around with and you're always cheerful. Hope you have the greatest day ever and cheers for more to comeee 🎉🥳🎉",
+      author: '-Shrekkk',
     },
     {
       id: 4,
       src: '/images/cloud9/4.jpg',
-      caption: "happyyy birthday valerieee! i just wanted to say i hope you have an amazing day and genuinely have the best year ahead. i'm really glad we got to become friends, especially through all the random roblox sessions, listening to music together, and all the stupid little moments we've had 😭. honestly, those are some of the memories i really enjoy.\n\nand of course, jai joanne, jai kisan\n\nbut yeah, happy birthday again valerie. i hope you get everything you're wishing for, stay happy, and have an amazing day.",
-      author: '-abrar',
+      caption: "HAPPY BIRTHDAY C5H10O2!! 🥳🎉\n(Valeric Acid, incase you forgot 🥴)\n\nBEEN LIKE 4 MONTHS SINCE I'VE KNOWN YOU, BUT IT FEELS LIKE IT'S BEEN WAYYYYY LONGER 😭. FROM ALL THE STUPID CONVERSATIONS AND CHAOS TO PROPER CONVERSATIONS ABOUT EVERYTHING GOING ON, YOU'VE BECOME SOMEONE I REALLY VALUE HAVING AROUND. I'M REALLY GLAD WE'VE MADE SO MANY MEMORIES IN SUCH A SHORT TIME 🫶.\n\nHOPE YOU HAVE AN AMAZING BIRTHDAY AND THAT THIS YEAR BRINGS YOU A LOT OF GOOD THINGS! AND TRY NOT TO BULLY ME 😭🙏",
+      author: '-Ethanee',
     },
     {
       id: 5,
       src: '/images/cloud9/5.jpg',
-      caption: 'Happy Birthday Joanne! 🎉🥳\n\nWishing you a super fun day ahead and a great year to come. Enjoy your special day!',
-      author: '-Sara(a stranger)',
+      caption: "happyyy birthday valerieee! i just wanted to say i hope you have an amazing day and genuinely have the best year ahead. i'm really glad we got to become friends, especially through all the random roblox sessions, listening to music together, and all the stupid little moments we've had 😭. honestly, those are some of the memories i really enjoy.\n\nand of course, jai joanne, jai kisan\n\nbut yeah, happy birthday again valerie. i hope you get everything you're wishing for, stay happy, and have an amazing day.",
+      author: '-abrar',
     },
     {
       id: 6,
       src: '/images/cloud9/6.jpg',
-      caption: "HAPPY BIRTHDAY JOANNE!! 🏍️🇮🇹\n\nMay this year bless you with absolute horsepower and total fluency in espresso-fueled Italian hand gestures. Time to trade the ordinary for roaring engines and chic café culture &mdash; have the wildest 17th birthday ever!",
-      author: '-maharshmallow/cheetos',
+      caption: 'Happy Birthday Joanne! 🎉🥳\n\nWishing you a super fun day ahead and a great year to come. Enjoy your special day!',
+      author: '-Sara(a stranger)',
     },
     {
       id: 7,
       src: '/images/cloud9/7.jpg',
-      caption: 'Idk who you are Joanne \u2014 just heard it\'s your birthday \u2014 Happy Birthday!\n\nHope you have a wonderful celebration today and enjoy every bit of it.',
-      author: '-Raghav(a stranger)',
+      caption: "HAPPY BIRTHDAY JOANNE!! 🏍️🇮🇹\n\nMay this year bless you with absolute horsepower and total fluency in espresso-fueled Italian hand gestures. Time to trade the ordinary for roaring engines and chic café culture &mdash; have the wildest 17th birthday ever!",
+      author: '-maharshmallow/cheetos',
     },
     {
       id: 8,
       src: '/images/cloud9/8.jpg',
-      caption: 'Idk who you are but \u2014 Happy Birthday Joanne! 🎉🥳\n\nWishing you a super fun day ahead and a great year to come. Enjoy your special day!',
-      author: '-Farreda(a stranger)',
+      caption: 'Idk who you are Joanne \u2014 just heard it\'s your birthday \u2014 Happy Birthday!\n\nHope you have a wonderful celebration today and enjoy every bit of it.',
+      author: '-Raghav(a stranger)',
     },
     {
       id: 9,
       src: '/images/cloud9/9.jpg',
-      caption: "HAPPY BIRTHDAY, RAISU'S GF! 🥳😘\n\nI DON'T KNOW YOU, BUT BASED ON THE VIBES HERE, HOPE YOU HAVE THE MOST AMAZING DAY! MAY THIS YEAR BRING YOU ENDLESS HAPPINESS AND BLESSINGS! ✨✨🎂",
-      author: '-VARUN (A STRANGER)',
+      caption: 'Idk who you are but \u2014 Happy Birthday Joanne! 🎉🥳\n\nWishing you a super fun day ahead and a great year to come. Enjoy your special day!',
+      author: '-Farreda(a stranger)',
     },
     {
       id: 10,
       src: '/images/cloud9/10.jpg',
+      caption: "HAPPY BIRTHDAY, RAISU'S GF! 🥳😘\n\nI DON'T KNOW YOU, BUT BASED ON THE VIBES HERE, HOPE YOU HAVE THE MOST AMAZING DAY! MAY THIS YEAR BRING YOU ENDLESS HAPPINESS AND BLESSINGS! ✨✨🎂",
+      author: '-VARUN (A STRANGER)',
+    },
+    {
+      id: 11,
+      src: '/images/cloud9/11.jpg',
       caption: "Happy Birthday grandma!!\n\nWe're all glad to have you in our group now. Ashu's been in such a good mood lately thanks to you. Hope we become good friends as time goes on. Let's also not stop bullying Ashu 🤭\n\nHope you have a great year ahead!",
       author: '-ghuffers',
     },
@@ -138,12 +144,10 @@ export default function CloudNinePage() {
         const isAtTop = scrollTop === 0;
         const isAtBottom = Math.abs(scrollHeight - clientHeight - scrollTop) < 2;
 
-        // If scrolling down and not yet at bottom, scroll the inner text box manually
         if (e.deltaY > 0 && !isAtBottom) {
           el.scrollTop += e.deltaY;
           return;
         }
-        // If scrolling up and not yet at top, scroll the inner text box manually
         if (e.deltaY < 0 && !isAtTop) {
           el.scrollTop += e.deltaY;
           return;
@@ -151,7 +155,6 @@ export default function CloudNinePage() {
       }
     }
 
-    // When text is at the boundary (or if there's no scroll needed), switch cards
     if (isAnimating) return;
 
     if (e.deltaY > 15) {
