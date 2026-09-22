@@ -69,11 +69,13 @@ export default function Home() {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: '2rem 1.5rem',
+        padding: '2rem 1rem',
         textAlign: 'center',
         position: 'relative',
-        overflow: 'hidden',
+        overflowX: 'hidden', // Prevents horizontal scroll on mobile
         fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Georgia, serif',
+        width: '100%',
+        boxSizing: 'border-box',
       }}
     >
       {/* Keyframe Animations */}
@@ -133,7 +135,7 @@ export default function Home() {
         }}
       />
 
-      {/* Floating Coffee & Mood Notes */}
+      {/* Floating Coffee & Mood Notes (Hidden on mobile via CSS) */}
       {notes.map((note, index) => (
         <div
           key={index}
@@ -188,10 +190,12 @@ export default function Home() {
         style={{
           zIndex: 10,
           maxWidth: '580px',
+          width: '100%',
           margin: '0 auto',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
+          boxSizing: 'border-box',
         }}
       >
         {/* Eyebrow Header */}
@@ -206,6 +210,8 @@ export default function Home() {
             alignItems: 'center',
             gap: '8px',
             marginBottom: '1.5rem',
+            flexWrap: 'wrap',
+            justifyContent: 'center',
           }}
         >
           <span>FROM ASH TO JO</span>
@@ -218,7 +224,7 @@ export default function Home() {
           style={{
             fontFamily: 'Georgia, Cambria, "Times New Roman", serif',
             fontStyle: 'italic',
-            fontSize: 'clamp(2.5rem, 6vw, 4.2rem)',
+            fontSize: 'clamp(2.2rem, 6vw, 4.2rem)',
             color: '#f5ebea',
             margin: 0,
             fontWeight: 'normal',
@@ -233,7 +239,7 @@ export default function Home() {
           style={{
             fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
             fontWeight: 700,
-            fontSize: 'clamp(1.8rem, 5vw, 3rem)',
+            fontSize: 'clamp(1.6rem, 5vw, 3rem)',
             color: '#d93043',
             margin: '0.4rem 0 1.5rem 0',
             letterSpacing: '-0.02em',
@@ -250,7 +256,7 @@ export default function Home() {
             backgroundColor: '#120406',
             border: '1px solid #3d0a12',
             borderRadius: '20px',
-            padding: '2rem',
+            padding: 'clamp(1.5rem, 4vw, 2rem)',
             boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 30px rgba(61, 10, 18, 0.3)',
             marginBottom: '2.25rem',
             backdropFilter: 'blur(8px)',
@@ -284,8 +290,8 @@ export default function Home() {
           </p>
 
           {/* Minigame Passcode Form */}
-          <form onSubmit={handleUnlock} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <div style={{ position: 'relative' }}>
+          <form onSubmit={handleUnlock} style={{ display: 'flex', flexDirection: 'column', gap: '1rem', width: '100%' }}>
+            <div style={{ position: 'relative', width: '100%' }}>
               <input
                 type="password"
                 maxLength={4}
@@ -335,7 +341,7 @@ export default function Home() {
               style={{
                 display: 'inline-block',
                 width: '100%',
-                padding: '16px 36px',
+                padding: '16px 20px',
                 borderRadius: '12px',
                 backgroundColor: '#28050b',
                 border: '1px solid #520814',
@@ -347,6 +353,7 @@ export default function Home() {
                 boxShadow: '0 15px 35px rgba(0, 0, 0, 0.7), 0 0 15px rgba(82, 8, 20, 0.4)',
                 transition: 'all 0.3s ease',
                 cursor: 'pointer',
+                boxSizing: 'border-box',
               }}
             >
               STEP INSIDE, JO &rarr;
