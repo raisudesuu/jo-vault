@@ -46,10 +46,10 @@ const PLAYLIST_TRACKS: Track[] = [
   { id: 31, title: 'Friends', artist: 'Chase Atlantic', duration: '3:50', spotifyTrackId: '7uDUb37h7Xdhza1eWMkoJv', vibeColor: 'linear-gradient(180deg, #051c26 0%, #0f3f57 50%, #01080c 100%)' },
   { id: 32, title: 'Leather Weather', artist: 'The Neighbourhood', duration: '2:56', spotifyTrackId: '4a9axdtH9qFx0nMiKjwChd', vibeColor: 'linear-gradient(180deg, #141414 0%, #2e2e2e 50%, #050505 100%)' },
   { id: 33, title: 'bloodline', artist: 'Ariana Grande', duration: '3:36', spotifyTrackId: '2hloaUoRonYssMuqLCBLTX', vibeColor: 'linear-gradient(180deg, #260512 0%, #570f2b 50%, #0c0105 100%)' },
-  { id: 34, title: 'Save Your Tears (Remix)', artist: 'The Weeknd', duration: '3:11', spotifyTrackId: '1oFAF1hdPOickyHgbuRjyX', vibeColor: 'linear-gradient(180deg, #260e05 0%, #57210f 50%, #0c0401 100%)' },
-  { id: 35, title: 'Young And Beautiful', artist: 'Lana Del Rey', duration: '3:56', spotifyTrackId: '2nMeu6UenVvwUktBCpLMK9', vibeColor: 'linear-gradient(180deg, #262005 0%, #57470f 50%, #0c0a01 100%)' },
-  { id: 36, title: 'A Little Death', artist: 'The Neighbourhood', duration: '3:29', spotifyTrackId: '0pxPNTroZcxXA0w6IDgMQJ', vibeColor: 'linear-gradient(180deg, #0f0f0f 0%, #282828 50%, #040404 100%)' },
-  { id: 37, title: '37 Stitches', artist: 'Drowning Pool', duration: '3:49', spotifyTrackId: '3fns1KwDSglUinPWngtsTK', vibeColor: 'linear-gradient(180deg, #260505 0%, #570f0f 50%, #0c0101 100%)' },
+  { id: 34, title: 'iloveitiloveitiloveit', artist: 'Bella Kay', duration: '3:03', spotifyTrackId: '5IMpnpD0tQVcqWlVIgtAtV', vibeColor: 'linear-gradient(180deg, #26051c 0%, #54103e 50%, #0f020b 100%)' },
+  { id: 35, title: 'Falling', artist: 'Harry Styles', duration: '4:00', spotifyTrackId: '1ZMiCix7XSAbfAJlEZWMCp', vibeColor: 'linear-gradient(180deg, #051d26 0%, #0f4457 50%, #01080c 100%)' },
+  { id: 36, title: 'I Wanna Be Yours', artist: 'Arctic Monkeys', duration: '3:03', spotifyTrackId: '5XeFesFbtLpXzIVDNQP22n', vibeColor: 'linear-gradient(180deg, #120c1f 0%, #291b42 50%, #08040f 100%)' },
+  { id: 37, title: 'Mercy', artist: 'Shawn Mendes', duration: '3:28', spotifyTrackId: '0AS63m1wHv9n4VVRizK6Hc', vibeColor: 'linear-gradient(180deg, #260505 0%, #570f0f 50%, #0c0101 100%)' },
 ];
 
 const FULL_PLAYLIST_EMBED = 'https://open.spotify.com/embed/playlist/4kIvPanUj3vMZWvD6Yl3WV?utm_source=generator&theme=0';
