@@ -72,7 +72,7 @@ export default function Home() {
         padding: '2rem 1rem',
         textAlign: 'center',
         position: 'relative',
-        overflowX: 'hidden', // Prevents horizontal scroll on mobile
+        overflowX: 'hidden',
         fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Georgia, serif',
         width: '100%',
         boxSizing: 'border-box',
@@ -295,7 +295,7 @@ export default function Home() {
               <input
                 type="password"
                 maxLength={4}
-                placeholder="Enter 4-digit code"
+                placeholder="••••"
                 value={passcode}
                 onChange={(e) => {
                   setPasscode(e.target.value);
@@ -308,12 +308,12 @@ export default function Home() {
                   border: error ? '1px solid #d93043' : '1px solid rgba(140, 25, 41, 0.4)',
                   borderRadius: '12px',
                   color: '#f5ebea',
-                  fontSize: '16px',
+                  fontSize: '18px',
                   textAlign: 'center',
                   outline: 'none',
                   boxSizing: 'border-box',
                   fontFamily: 'monospace',
-                  letterSpacing: '0.3em',
+                  letterSpacing: '0.4em',
                 }}
               />
             </div>
