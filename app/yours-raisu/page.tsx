@@ -58,6 +58,23 @@ export default function YoursRaisuPage() {
           50% { transform: rotate(8deg) translateY(-6px); }
         }
 
+        @keyframes giftGlow {
+          0%, 100% {
+            box-shadow: 0 0 15px rgba(255, 182, 193, 0.4), 0 0 30px rgba(255, 105, 180, 0.2);
+            transform: scale(1);
+          }
+          50% {
+            box-shadow: 0 0 25px rgba(255, 182, 193, 0.8), 0 0 45px rgba(255, 105, 180, 0.5);
+            transform: scale(1.05);
+          }
+        }
+
+        @keyframes ribbonWiggle {
+          0%, 100% { transform: rotate(0deg); }
+          25% { transform: rotate(-8deg); }
+          75% { transform: rotate(8deg); }
+        }
+
         .soothing-main-bg {
           animation: soothingBg 10s ease-in-out infinite;
         }
@@ -99,6 +116,38 @@ export default function YoursRaisuPage() {
           box-shadow: 0 8px 30px rgba(255, 59, 80, 0.7);
           transform: translateY(-2px);
         }
+
+        .gift-box-btn {
+          position: relative;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+          background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+          border: 1px solid #ffb6c1;
+          color: #ffffff;
+          padding: 14px 24px;
+          border-radius: 18px;
+          font-family: monospace;
+          font-size: 11px;
+          letter-spacing: 0.15em;
+          text-transform: uppercase;
+          text-decoration: none;
+          animation: giftGlow 3s ease-in-out infinite;
+          transition: all 0.3s ease;
+          cursor: pointer;
+        }
+
+        .gift-box-btn:hover {
+          background: linear-gradient(135deg, #ff85a1 0%, #ff9ebb 100%);
+          transform: translateY(-3px) scale(1.03);
+        }
+
+        .gift-icon {
+          font-size: 16px;
+          display: inline-block;
+          animation: ribbonWiggle 2s ease-in-out infinite;
+        }
       `}</style>
 
       {/* Background Animation Container */}
@@ -126,10 +175,10 @@ export default function YoursRaisuPage() {
         </a>
       </div>
 
-      {/* Outer Wrapper with Extra Horizontal Room for Floating Elements */}
+      {/* Outer Wrapper */}
       <div style={{ position: 'relative', maxWidth: '890px', width: '100%', margin: '3rem 2rem', zIndex: 10 }}>
         
-        {/* Random Floating Sparkles, Emojis & Spinning Texts Safely Positioned Outside */}
+        {/* Floating Sparkles & Emojis */}
         <div className="floating-element-1" style={{ position: 'absolute', top: '-45px', left: '10%', fontSize: '20px', zIndex: 10, pointerEvents: 'none' }}>✨</div>
         <div className="floating-element-2" style={{ position: 'absolute', top: '-35px', left: '45%', fontSize: '18px', zIndex: 10, pointerEvents: 'none' }}>🤍</div>
         <div className="floating-element-1" style={{ position: 'absolute', top: '-50px', right: '18%', fontSize: '22px', zIndex: 10, pointerEvents: 'none' }}>🌹</div>
@@ -182,7 +231,7 @@ export default function YoursRaisuPage() {
             </h1>
           </div>
 
-          {/* Body Content - Spiced up with real human chaos & hamster energy */}
+          {/* Body Content */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', color: '#ebd4d3', fontSize: '16px', lineHeight: '1.85', textAlign: 'left' }}>
             <p style={{ margin: 0 }}>
               Jo... honestly? I've rewritten this like a million times in my head and I still don't even know where to start or how to type fast enough to match how crazy my brain gets whenever I think about you. Every time I try to put into words what you actually mean to me, language just feels like... ugh, way too small and clunky. EEEEEEEEEEEEEEEEEEEEEEE! 😭 Like seriously, I am completely, hopelessly, irreversibly yours. You aren't just some person in my life—you literally <em>are</em> the light that makes everything else make sense. I know I go quiet sometimes and suck at being talkative, and I'm super sorry for that, but please never forget that even when I'm sitting there saying nothing, my mind is literally 100% just full of you. Always.
@@ -203,10 +252,15 @@ export default function YoursRaisuPage() {
             </p>
           </div>
 
-          {/* Solid Button Footer */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', paddingTop: '1.5rem', borderTop: '1px solid rgba(217, 48, 67, 0.3)', alignItems: 'center' }}>
+          {/* Footer Buttons: Return button + Cute Gift Box */}
+          <div style={{ display: 'flex', flexDirection: 'row', gap: '1.2rem', paddingTop: '1.5rem', borderTop: '1px solid rgba(217, 48, 67, 0.3)', alignItems: 'center', justifyContent: 'center', flexWrap: 'wrap' }}>
             <a href="/" className="return-btn-solid">
               Wanna go back?
+            </a>
+
+            <a href="/lily-bouquet" className="gift-box-btn" title="Open your special gift! 🎁">
+              <span className="gift-icon">🎁</span>
+              <span>A gift for you... ✨</span>
             </a>
           </div>
 
